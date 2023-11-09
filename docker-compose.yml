@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  #データベース
+  mysql:
+    image: mysql:8.0.27
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+
+  #Djangoアプリ
+  web:
+    build: .
+    #command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./code:/code
+    ports:
+      - "8000:8000"
+    tty: true
