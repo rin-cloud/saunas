@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>マイページ</title>
+  <style>
+    /* CSSスタイルを追加 */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .top-bar, .tabs {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+    .tab {
+      display: inline-block;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #ccc;
+      border-radius: 5px 5px 0 0;
+    }
+    .tab.active {
+      background-color: #f0f0f0;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .post-list, .my-posts {
+      margin: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .post-item {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .post-content {
+      font-size: 14px;
+    }
+    .post-image {
+      max-width: 200px;
+      max-height: 200px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <button onclick="location.href='/'">saunas</button>
+    <button onclick="location.href='/my_page'">ユーザ名</button>
+  </div>
+  <div class="tabs">
+    <div class="tab active" id="myPostsTab" onclick="showMyPosts()">自分の投稿</div>
+    <div class="tab" id="favoritesTab" onclick="showFavorites()">お気に入り</div>
+  </div>
+  <div class="my-posts" id="postList">
+    {% for shop in shop %}
+      <div>
+        <h3>店舗: {{ shop.name }}</h3>
+        <p>アクセス: {{ shop.access }}</p>
+        <p>評価: {{ shop.evaluation }}</p>
+      </div>
+    {% empty %}
+      <p>おすすめのサウナはまだありません。</p>
+    {% endfor %}
+  </div>
+  <div class="post-list" id="favoriteList" hidden>
+    <!-- ここにお気に入り一覧が表示される -->
+    <div class="post-item"><div class="post-content">お気に入り1</div><img class="post-image" src="path/to/image3.jpg" alt="お気に入り1の画像"></div>
+    <div class="post-item"><div class="post-content">お気に入り2</div><img class="post-image" src="path/to/image3.jpg" alt="お気に入り2の画像"></div>
+  </div>
+
+  <script>
+    function showMyPosts(){
+      document.getElementById("favoriteList").hidden = true;
+      document.getElementById("postList").hidden = false;
+      document.getElementById("myPostsTab").classList.add("active");
+      document.getElementById("favoritesTab").classList.remove("active");
+    }
+
+    function showFavorites(){
+      document.getElementById("favoriteList").hidden = false;
+      document.getElementById("postList").hidden = true;
+      document.getElementById("favoritesTab").classList.add("active");
+      document.getElementById("myPostsTab").classList.remove("active");
+    }
+  </script>
+</body>
+</html>

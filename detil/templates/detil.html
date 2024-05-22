@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNSの詳細ページ</title>
+    <style>
+        /* スタイルはここに追加 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        main {
+            padding: 20px;
+        }
+        .post {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+        }
+        .post .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="myPageButton">マイページ</button>
+        <button id="topPageButton" onclick="goToTopPage()">saunas</button>
+    </header>
+    <main>
+        <div class="post">
+            <div style="display: flex; ">
+                <div style="width: 300px;height: 200px;">
+                    <img src="店舗画像のURL" alt="店舗画像">
+                </div>
+                <div>
+                    <p>水風呂の評価:{{waterEvaluation}}</p>
+                    <p>サウナの評価:{{saunaEvaluation}}</p>
+                    <p>内・外気浴の評価:{{inOutEvaluation}}</p>
+                </div>
+            </div>
+            <div>
+                <p>アクセス:{{access}}</p>
+            </div>
+            <div>
+                <p>サウナの感想:{{saunaThoughts}}</p>
+                <button id="saunaNiceButton" style="margin-right: 50px; margin-left: 100px;">サウナイス</button>
+                <span id="saunaNiceCount" style="margin-right: 50px;">{{saunaNice}}</span>
+                <button id="addCommentButton">コメント追加</button>
+            </div>
+            <!-- コメントを表示する部分 -->
+            <div id="comments">
+                <p>コメント</p>
+                <hr>
+                {% for i in comments %}
+                    <div class="comments-list" >
+                        <div class="comment-item"><div class="comment-content">{{i.comment}}</div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    <script>
+        // トップページに遷移する関数
+        function goToTopPage() {
+            window.location.href = "トップページのURL";
+        }
+
+        // 以下のJavaScriptコードにはコメント追加や投稿の取得・表示などの処理が必要です
+        // JavaScriptを使用して、コメントの追加、サウナイスの数の更新、投稿の取得・表示などの動作を実装してください
+    </script>
+</body>
+</html>

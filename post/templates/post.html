@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SNS投稿ページ</title>
+  <style>
+    /* CSSスタイルを追加 */
+    /* ... */
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <button onclick="location.href='/'">saunas</button>
+    <button onclick="location.href='/my_page'">ユーザ名</button>
+  </div>
+  <h1>サウナ投稿ページ</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    <label for="store_name">店舗名:</label>
+    <input type="text" id="store_name" name="store_name" required>
+    <br>
+    <label for="water_bath_rating">水風呂の評価:</label>
+    <select id="water_bath_rating" name="water_bath_rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br>
+    <label for="sauna_rating">サウナの評価:</label>
+    <select id="sauna_rating" name="sauna_rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br>
+    <label for="indoor_outdoor_rating">内・外気浴の評価:</label>
+    <select id="indoor_outdoor_rating" name="indoor_outdoor_rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br>
+    <label for="access">アクセス:</label>
+    <input type="text" id="access" name="access" required>
+    <br>
+    <label for="sauna_impression">サウナの感想:</label>
+    <textarea id="sauna_impression" name="sauna_impression" rows="4" cols="50" required></textarea>
+    <br>
+    <label for="image_upload">サウナの画像アップロード:</label>
+    <input type="file" id="image_upload" name="image_upload" onchange="previewFile(this);">
+    <br>
+
+    <img id="preview" style="width: 500px;">
+
+    <form action="/top_template/" method="post" enctype="multipart/form-data">
+      <!-- フォームフィールド... -->
+      <input type="submit" value="投稿">
+    </form>
+
+  </form>
+
+  <script>
+    function previewFile(hoge){
+      var fileData = new FileReader();
+      fileData.onload = (function() {
+        //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
+        //プレビュー表示している
+        document.getElementById('preview').src = fileData.result;
+      });
+      fileData.readAsDataURL(hoge.files[0]);
+    }
+    </script>
+
+</body>
+</html>
